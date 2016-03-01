@@ -1,1 +1,1 @@
-This should be edited <3
+To clone the repository, run `git clone https://github.com/USBlabs/project.git`
