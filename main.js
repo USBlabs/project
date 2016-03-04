@@ -24,7 +24,11 @@ var shooter = {
   velocity_cap = 20;
   // Direction shooter is facing, in radians
   direction = 0;
+
   // Function that updates direction field each frame
+  /* NOTE: this function will have to be changed in order to handle the event
+      that only one of velocity.y or velocity.x is 0
+  */
   function update_direction = {
     // If velocities are zero, don't change direction
     if (velocity.y == 0 && velocity.x == 0) {
@@ -36,11 +40,13 @@ var shooter = {
     if (velocity.y > 0) {
       // And to the right
       if (velocity.x > 0) {
-        direction = angle + constant;
+        // Shift around unit circle to quadrant 4
+        direction = angle + Math.PI * 3 / 2;
         return;
       }
-      else { // Must be going left
-        direction = angle + constant;
+      else if (velocity.x < 0){ // Must be going left
+        // Shift to quadrant 3
+        direction = angle + Math.PI;
         return;
       }
     }
@@ -48,11 +54,13 @@ var shooter = {
     if (velocity.y < 0) {
       // And to the right
       if (velocity.x > 0) {
-        direction = angle + constant;
+        // No shift needed
+        direction = angle;
         return;
       }
-      else { // Must be going left
-        direction = angle + constant;
+      else if (velocity.x < 0) { // Must be going left
+        // Shift to quadrant 2
+        direction = angle + Math.PI / 2;
         return;
       }
     }
