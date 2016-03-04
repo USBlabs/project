@@ -22,8 +22,41 @@ var shooter = {
   acceleration = 2;
   // Maximum speed
   velocity_cap = 20;
-
-  // TODO add field for direction facing, possibly?
+  // Direction shooter is facing, in radians
+  direction = 0;
+  // Function that updates direction field each frame
+  function update_direction = {
+    // If velocities are zero, don't change direction
+    if (velocity.y == 0 && velocity.x == 0) {
+      return;
+    }
+    // arctan function; returns value in radians
+    var angle = Math.atan(Math.abs(velocity.y) / Math.abs(velocity.x));
+    // If going down
+    if (velocity.y > 0) {
+      // And to the right
+      if (velocity.x > 0) {
+        direction = angle + constant;
+        return;
+      }
+      else { // Must be going left
+        direction = angle + constant;
+        return;
+      }
+    }
+    // If going up
+    if (velocity.y < 0) {
+      // And to the right
+      if (velocity.x > 0) {
+        direction = angle + constant;
+        return;
+      }
+      else { // Must be going left
+        direction = angle + constant;
+        return;
+      }
+    }
+  }
 }
 
 function draw() {
