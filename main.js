@@ -6,6 +6,26 @@ var ctx = canvas.getContext("2d");
 // Variable for ball radius
 var ballradius = 40;
 
+// Object containing information about shooter
+var shooter = {
+  // Position on canvas
+  position = {
+    x:0,
+    y:0
+  }
+  // Current velocity on canvas
+  velocity = {
+    x:0,
+    y:0
+  }
+  // Acceleration value to be used when direction is being pressed
+  acceleration = 2;
+  // Maximum speed
+  velocity_cap = 20;
+
+  // TODO add field for direction facing, possibly?
+}
+
 function draw() {
   // Draw a ball that acts as a shooter. We'll worry about graphics later.
   // This will have to be put into a function
