@@ -3,6 +3,13 @@ var canvas = document.querySelector('canvas');
 // Allows us to manipulate canvas
 var ctx = canvas.getContext("2d");
 
+//Starting point
+var a = 150;
+var b = 150;
+//move Direction
+var da = 2;
+var db = 2;
+
 // Variable for ball radius
 var ballradius = 40;
 
@@ -67,25 +74,22 @@ var shooter = {
   }
 }
 
-function draw() {
-  // TODO add clear statement to clear canvas
-
-  // Draw a ball that acts as a shooter. We'll worry about graphics later.
-  // This will have to be put into a function
-  ctx.beginPath();
-
-  // x-axis, y-axis, radius, starting angle, ending angle, direction to measure
-  // angle (false for clockwise (default), true for counterclockwise)
-  ctx.arc(150, 150, ballradius, 0, Math.PI*2, false);
-
-  // Color of circle
-  ctx.fillStyle = "#9b59b6";
-
-  // Texts the ctx to actually draw the circle on the canvas
-  ctx.fill();
-
-  ctx.closePath();
-}
-
+  function draw() {
+      //Clear the pass of the trail
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      // Draw a ball that acts as a shooter. We'll worry about graphics later.
+      // This will have to be put into a function
+      ctx.beginPath();
+      // x-axis, y-axis, radius, starting angle, and ending angle
+      ctx.arc(a, b, 40, 0, Math.PI*2);
+      // Color of circle
+      ctx.fillStyle = "#9b59b6";
+      // Texts the ctx to actually draw the circle on the canvas
+      ctx.fill();
+      ctx.closePath();
+      //update variable of a & b location
+      a += da;
+      b += db
+  }
 // Repeat function draw every 10 ms
 setInterval(draw, 10);
