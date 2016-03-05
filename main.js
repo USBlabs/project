@@ -68,6 +68,8 @@ var shooter = {
 }
 
 function draw() {
+  // TODO add clear statement to clear canvas
+
   // Draw a ball that acts as a shooter. We'll worry about graphics later.
   // This will have to be put into a function
   ctx.beginPath();
@@ -81,6 +83,7 @@ function draw() {
 
   // Texts the ctx to actually draw the circle on the canvas
   ctx.fill();
+
   ctx.closePath();
 }
 
