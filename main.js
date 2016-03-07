@@ -16,27 +16,27 @@ var ballradius = 40;
 // Object containing information about shooter
 var shooter = {
   // Position on canvas
-  position = {
+  position : {
     x:0,
     y:0
-  }
+  },
   // Current velocity on canvas
-  velocity = {
+  velocity : {
     x:0,
     y:0
-  }
+  },
   // Acceleration value to be used when direction is being pressed
-  acceleration = 2;
+  acceleration : 2,
   // Maximum speed
-  velocity_cap = 20;
+  velocity_cap : 20,
   // Direction shooter is facing, in radians
-  direction = 0;
+  direction : 0,
 
   // Function that updates direction field each frame
   /* NOTE: this function will have to be changed in order to handle the event
       that only one of velocity.y or velocity.x is 0
   */
-  function update_direction = {
+  update_direction : function() {
     // If velocities are zero, don't change direction
     if (velocity.y == 0 && velocity.x == 0) {
       return;
