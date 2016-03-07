@@ -13,6 +13,12 @@ var db = 2;
 // Variable for ball radius
 var ballradius = 40;
 
+// We should use an array to keep track of all enemies and their info
+var enemies = [];
+
+// An array for all bullets and their info (ex. position, velocity)
+var bullets = [];
+
 // Object containing information about shooter
 var shooter = {
   // Position on canvas
