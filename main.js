@@ -54,7 +54,7 @@ var shooter = {
   /* Function that updates direction field each frame
       I made this because I was thinking about drawing a triangle as the
       shooter, and this would determine which direction the triangle
-      is facing.
+      is facing. EDIT: when I thought we were making a top-down
   */
   /* NOTE: this function will have to be changed in order to handle the event
       that only one of velocity.y or velocity.x is 0
