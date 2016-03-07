@@ -105,14 +105,21 @@ var shooter = {
 // Repeat function draw every 10 ms
 setInterval(draw, 10);
 
+/*
+  Given a shooter object, it wallCollisions checks for collisions that will
+  happen in the next frame and prevent them.
+*/
 function wallCollisions(shooter) {
+  // Grab position data for readability
   var x = shooter.position.x;
   var dx = shooter.velocity.x;
   var y = shooter.position.y;
   var dy = shooter.velocity.y;
+  // Calculate position in next frame
   var nextX = x + dx;
   var nextY = y + dy;
 
+  // If it will collide with wall in next frame, set velocity to 0
   if (nextX > canvas.width || next X < 0) {
     shooter.velocity.x = 0;
   }
