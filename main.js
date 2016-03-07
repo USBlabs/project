@@ -10,7 +10,6 @@ var b = 150;
 var da = 2;
 var db = 2;
 
-
 // We should use an array to keep track of all enemies and their info
 var enemies = [];
 
