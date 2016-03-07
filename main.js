@@ -105,6 +105,18 @@ var shooter = {
 // Repeat function draw every 10 ms
 setInterval(draw, 10);
 
-function collidingWithWall(shooter) {}
-  if ()
+function wallCollisions(shooter) {
+  var x = shooter.position.x;
+  var dx = shooter.velocity.x;
+  var y = shooter.position.y;
+  var dy = shooter.velocity.y;
+  var nextX = x + dx;
+  var nextY = y + dy;
+
+  if (nextX > canvas.width || next X < 0) {
+    shooter.velocity.x = 0;
+  }
+  if (nextY > canvas.height || nextY < 0) {
+    shooter.velocity.y = 0;
+  }
 }
