@@ -38,9 +38,14 @@ var shooter = {
   // Direction shooter is facing, in radians
   direction : 0,
 
-  // Function that updates direction field each frame
+  /* Function that updates direction field each frame
+      I made this because I was thinking about drawing a triangle as the
+      shooter, and this would determine which direction the triangle
+      is facing.
+  */
   /* NOTE: this function will have to be changed in order to handle the event
       that only one of velocity.y or velocity.x is 0
+      NOTE: This function won't be useful anymore. Nevermind.
   */
   update_direction : function() {
     // If velocities are zero, don't change direction
@@ -99,3 +104,7 @@ var shooter = {
   }
 // Repeat function draw every 10 ms
 setInterval(draw, 10);
+
+function collidingWithWall(shooter) {}
+  if ()
+}
