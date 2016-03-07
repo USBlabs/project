@@ -100,6 +100,8 @@ document.addEventListener("keyup", keyUpHandler, false);
         upPressed = true;
     } else if(e.keyCode == 40) {
         downPressed = true;
+    } else if(e.keyCode == 32) {
+        spacePressed = true;
     }
   }
   function keyUpHandler(e) {
@@ -111,6 +113,8 @@ document.addEventListener("keyup", keyUpHandler, false);
         upPressed = false;
     } else if(e.keyCode == 40) {
         downPressed = false;
+    } else if(e.keyCode == 32) {
+        spacePressed = false;
     }
   }
 
