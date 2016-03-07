@@ -19,6 +19,19 @@ var enemies = [];
 // An array for all bullets and their info (ex. position, velocity)
 var bullets = [];
 
+var platform = {
+  width : 20,
+  height: 5,
+  x : 50,
+  y : 50,
+  // These will make it easier to calculate collisions
+  bottom_bound : y + (height / 2),
+  left_bound : x - (width / 2),
+  top_bound : y - (height / 2),
+  right_bound : x + (width / 2)
+  }
+}
+
 // Object containing information about shooter
 var shooter = {
   // Position on canvas
@@ -100,7 +113,10 @@ var shooter = {
       ctx.closePath();
       //update variable of a & b location
       a += da;
-      b += db
+      b += db;
+      // Check for collisions next frame
+      wallCollisions(shooter);
+      platformCollisions(shooter);
   }
 // Repeat function draw every 10 ms
 setInterval(draw, 10);
@@ -125,5 +141,35 @@ function wallCollisions(shooter) {
   }
   if (nextY > canvas.height || nextY < 0) {
     shooter.velocity.y = 0;
+  }
+
+  /*
+    For each platform in the platforms array, check if shooter will collide.
+    If so, let him land on the platform without falling through.
+    Ignores collisions if shooter has a positive Y velocity (jumping).
+  */
+  function platformCollisions(shooter) {
+    // Placeholder
+    var platforms = []
+    // Grab position data for readability
+    var y = shooter.position.y;
+    var dy = shooter.velocity.y;
+    // Calculate position in next frame
+    var nextY = y + dy;
+
+    // No need to check X because platforms will only affect Y velocity
+
+    // If player is jumping, no collisions
+    if (dy > 0) {
+      // Exit method
+      return;
+    }
+
+    for (platform in platforms) {
+      // If player will land on platform
+      if (nextY < platform.top_bound) {
+        shooter.velocity.y = 0; // Set his y velocity to 0
+      }
+    }
   }
 }
