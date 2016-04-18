@@ -19,6 +19,12 @@ var enemies = [];
 // An array for all bullets and their info (ex. position, velocity)
 var bullets = [];
 
+// key variables
+var rightPressed = false;
+var leftPressed = false;
+var upPressed = false;
+var downPressed = false;
+var spacePressed = false;
 var platform = {
   width : 20,
   height: 5,
@@ -97,6 +103,38 @@ var shooter = {
     }
   }
 }
+
+document.addEventListener("keydown", keyDownHandler, false);
+document.addEventListener("keyup", keyUpHandler, false);
+
+/* keyboard control functions */
+  function keyDownHandler(e) {
+    if(e.keyCode == 39) {
+        rightPressed = true;
+    } else if(e.keyCode == 37) {
+        leftPressed = true;
+    } else if(e.keyCode == 38) {
+        upPressed = true;
+    } else if(e.keyCode == 40) {
+        downPressed = true;
+    } else if(e.keyCode == 32) {
+        spacePressed = true;
+    }
+  }
+  function keyUpHandler(e) {
+    if(e.keyCode == 39) {
+        rightPressed = false;
+    } else if(e.keyCode == 37) {
+        leftPressed = false;
+    } else if(e.keyCode == 38) {
+        upPressed = false;
+    } else if(e.keyCode == 40) {
+        downPressed = false;
+    } else if(e.keyCode == 32) {
+        spacePressed = false;
+    }
+  }
+
 
   function draw() {
       //Clear the pass of the trail
