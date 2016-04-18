@@ -38,6 +38,12 @@ var platform = {
   }
 }
 
+// advanced key variables
+var wPressed = false;
+var aPressed = false;
+var sPressed = false;
+var dPressed = false;
+
 // Object containing information about shooter
 var shooter = {
   // Position on canvas
@@ -119,6 +125,14 @@ document.addEventListener("keyup", keyUpHandler, false);
         downPressed = true;
     } else if(e.keyCode == 32) {
         spacePressed = true;
+    } else if(e.keyCode == 87) {
+        wPressed = true;
+    } else if(e.keyCode == 65) {
+        aPressed = true;
+    } else if(e.keyCode == 83) {
+        sPressed = true;
+    } else if(e.keyCode == 68) {
+        dPressed = true;
     }
   }
   function keyUpHandler(e) {
@@ -132,6 +146,14 @@ document.addEventListener("keyup", keyUpHandler, false);
         downPressed = false;
     } else if(e.keyCode == 32) {
         spacePressed = false;
+    } else if(e.keyCode == 87) {
+        wPressed = true;
+    } else if(e.keyCode == 65) {
+        aPressed = false;
+    } else if(e.keyCode == 83) {
+        sPressed = false;
+    } else if(e.keyCode == 68) {
+        dPressed = false;
     }
   }
 
