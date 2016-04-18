@@ -25,6 +25,18 @@ var leftPressed = false;
 var upPressed = false;
 var downPressed = false;
 var spacePressed = false;
+var platform = {
+  width : 20,
+  height: 5,
+  x : 50,
+  y : 50,
+  // These will make it easier to calculate collisions
+  bottom_bound : y + (height / 2),
+  left_bound : x - (width / 2),
+  top_bound : y - (height / 2),
+  right_bound : x + (width / 2)
+  }
+}
 
 // Object containing information about shooter
 var shooter = {
@@ -45,9 +57,14 @@ var shooter = {
   // Direction shooter is facing, in radians
   direction : 0,
 
-  // Function that updates direction field each frame
+  /* Function that updates direction field each frame
+      I made this because I was thinking about drawing a triangle as the
+      shooter, and this would determine which direction the triangle
+      is facing. EDIT: when I thought we were making a top-down
+  */
   /* NOTE: this function will have to be changed in order to handle the event
       that only one of velocity.y or velocity.x is 0
+      NOTE: This function won't be useful anymore. Nevermind.
   */
   update_direction : function() {
     // If velocities are zero, don't change direction
@@ -134,7 +151,63 @@ document.addEventListener("keyup", keyUpHandler, false);
       ctx.closePath();
       //update variable of a & b location
       a += da;
-      b += db
+      b += db;
+      // Check for collisions next frame
+      wallCollisions(shooter);
+      platformCollisions(shooter);
   }
 // Repeat function draw every 10 ms
 setInterval(draw, 10);
+
+/*
+  Given a shooter object, it wallCollisions checks for collisions that will
+  happen in the next frame and prevent them.
+*/
+function wallCollisions(shooter) {
+  // Grab position data for readability
+  var x = shooter.position.x;
+  var dx = shooter.velocity.x;
+  var y = shooter.position.y;
+  var dy = shooter.velocity.y;
+  // Calculate position in next frame
+  var nextX = x + dx;
+  var nextY = y + dy;
+
+  // If it will collide with wall in next frame, set velocity to 0
+  if (nextX > canvas.width || next X < 0) {
+    shooter.velocity.x = 0;
+  }
+  if (nextY > canvas.height || nextY < 0) {
+    shooter.velocity.y = 0;
+  }
+
+  /*
+    For each platform in the platforms array, check if shooter will collide.
+    If so, let him land on the platform without falling through.
+    Ignores collisions if shooter has a positive Y velocity (jumping).
+  */
+  function platformCollisions(shooter) {
+    // Placeholder
+    var platforms = []
+    // Grab position data for readability
+    var y = shooter.position.y;
+    var dy = shooter.velocity.y;
+    // Calculate position in next frame
+    var nextY = y + dy;
+
+    // No need to check X because platforms will only affect Y velocity
+
+    // If player is jumping, no collisions
+    if (dy > 0) {
+      // Exit method
+      return;
+    }
+
+    for (platform in platforms) {
+      // If player will land on platform
+      if (nextY < platform.top_bound) {
+        shooter.velocity.y = 0; // Set his y velocity to 0
+      }
+    }
+  }
+}
