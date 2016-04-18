@@ -31,11 +31,10 @@ var platform = {
   x : 50,
   y : 50,
   // These will make it easier to calculate collisions
-  bottom_bound : y + (height / 2),
-  left_bound : x - (width / 2),
-  top_bound : y - (height / 2),
-  right_bound : x + (width / 2)
-  }
+  bottom_bound : this.y + (this.height / 2),
+  left_bound : this.x - (this.width / 2),
+  top_bound : this.y - (this.height / 2),
+  right_bound : this.x + (this.width / 2)
 }
 
 // advanced key variables
@@ -196,40 +195,40 @@ function wallCollisions(shooter) {
   var nextY = y + dy;
 
   // If it will collide with wall in next frame, set velocity to 0
-  if (nextX > canvas.width || next X < 0) {
+  if (nextX > canvas.width || nextX < 0) {
     shooter.velocity.x = 0;
   }
   if (nextY > canvas.height || nextY < 0) {
     shooter.velocity.y = 0;
   }
+}
 
-  /*
-    For each platform in the platforms array, check if shooter will collide.
-    If so, let him land on the platform without falling through.
-    Ignores collisions if shooter has a positive Y velocity (jumping).
-  */
-  function platformCollisions(shooter) {
-    // Placeholder
-    var platforms = []
-    // Grab position data for readability
-    var y = shooter.position.y;
-    var dy = shooter.velocity.y;
-    // Calculate position in next frame
-    var nextY = y + dy;
+/*
+  For each platform in the platforms array, check if shooter will collide.
+  If so, let him land on the platform without falling through.
+  Ignores collisions if shooter has a positive Y velocity (jumping).
+*/
+function platformCollisions(shooter) {
+  // Placeholder
+  var platforms = []
+  // Grab position data for readability
+  var y = shooter.position.y;
+  var dy = shooter.velocity.y;
+  // Calculate position in next frame
+  var nextY = y + dy;
 
-    // No need to check X because platforms will only affect Y velocity
+  // No need to check X because platforms will only affect Y velocity
 
-    // If player is jumping, no collisions
-    if (dy > 0) {
-      // Exit method
-      return;
-    }
+  // If player is jumping, no collisions
+  if (dy > 0) {
+    // Exit method
+    return;
+  }
 
-    for (platform in platforms) {
-      // If player will land on platform
-      if (nextY < platform.top_bound) {
-        shooter.velocity.y = 0; // Set his y velocity to 0
-      }
+  for (platform in platforms) {
+    // If player will land on platform
+    if (nextY < platform.top_bound) {
+      shooter.velocity.y = 0; // Set his y velocity to 0
     }
   }
 }
